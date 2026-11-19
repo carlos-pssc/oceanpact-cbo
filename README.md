@@ -1,5 +1,7 @@
 # OceanPact CBO
 
+> **Projeto não oficial.** Feito por mim e colegas para uma apresentação. Não é um site da OceanPact nem da CBO; marcas, nomes e imagens pertencem às respectivas empresas.
+
 Site institucional da OceanPact CBO com a página inicial e a aba do Linkedin.
 
 ## Páginas
