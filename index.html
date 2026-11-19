@@ -19,13 +19,13 @@
 
   /* Canvas desenhado em 1920px, escalado para a largura da janela */
   #stage{position:relative;width:100%;margin:0 auto;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,.45)}
-  #page{position:absolute;top:0;left:0;width:1920px;height:4222px;overflow:hidden;background:#fff;transform-origin:0 0}
+  #page{position:absolute;top:0;left:0;width:1920px;height:5454px;overflow:hidden;background:#01060c;transform-origin:0 0}
   .abs{position:absolute}
   .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 
   /* Fundos */
   #ocean{left:-31px;top:-45px;width:1968px;height:4334px}
-  #decoBg{left:-32px;top:2712px;width:2165px;height:1536px;display:flex;align-items:center;justify-content:center}
+  #decoBg{left:-32px;top:3944px;width:2165px;height:1536px;display:flex;align-items:center;justify-content:center}
   #decoBg div{flex:none;width:1536px;height:2165px;transform:rotate(-90deg);filter:blur(7.95px);position:relative}
   #decoBg img{object-position:bottom;opacity:.15}
   #heroBg{left:-60px;top:0;width:2148px;height:1209px}
@@ -109,14 +109,14 @@
   #thumb{left:0;top:0;width:100%;height:482px;border-radius:75px;background:#272525;border:1px solid #fff}
 
   /* Rodapé */
-  #fLogo{left:40px;top:3328px;width:357px;height:228px}
+  #fLogo{left:40px;top:4560px;width:357px;height:228px}
   .fTxt{left:42px;width:620px;font:600 30px/1 Inter,sans-serif;letter-spacing:4.5px;color:#fff}
-  #fPhone{top:3580px}
-  #fAddr{top:3656px;font-weight:500}
-  #fSocial{left:42px;top:3786px;width:251px;height:112px;overflow:hidden}
+  #fPhone{top:4812px}
+  #fAddr{top:4888px;font-weight:500}
+  #fSocial{left:42px;top:5018px;width:251px;height:112px;overflow:hidden}
   #fSocial img{position:absolute;height:100%;left:-8.76%;top:0;width:115.54%;max-width:none}
-  #fEmerg{left:42px;top:3964px;width:650px;height:69px;border-radius:22px;background:#fff;padding:12px 16px;font:600 35px/1 Inter,sans-serif;letter-spacing:1.4px;color:#000;white-space:nowrap}
-  #copy{left:42px;top:4130px;font:600 22px/1 Inter,sans-serif;letter-spacing:1.5px;color:#fff;opacity:.85}
+  #fEmerg{left:42px;top:5196px;width:650px;height:69px;border-radius:22px;background:#fff;padding:12px 16px;font:600 35px/1 Inter,sans-serif;letter-spacing:1.4px;color:#000;white-space:nowrap}
+  #copy{left:42px;top:5362px;font:600 22px/1 Inter,sans-serif;letter-spacing:1.5px;color:#fff;opacity:.85}
   #topbar{position:fixed;top:0;left:0;width:1920px;height:90px;transform-origin:0 0;z-index:50}
   #topbar #headerBg{transition:background .3s;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}
   #topbar.scrolled #headerBg{background:rgba(4,18,34,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
@@ -128,12 +128,56 @@
   #bg #decoBg{left:0;width:100%}
   /* Layout: fundos ocupam a tela toda; conteúdo centralizado em escala menor */
   #page{width:1920px}
-  #bg{position:absolute;left:0;top:0;width:100%;height:4222px;overflow:hidden}
-  #content{position:absolute;top:0;left:0;width:1920px;height:4222px}
+  #bg{position:absolute;left:0;top:0;width:100%;height:5454px;overflow:hidden}
+  #content{position:absolute;top:0;left:0;width:1920px;height:5454px}
   #stage{box-shadow:none!important}
   #topbar{width:100%!important;height:auto;transform:none!important}
   #topbar #headerBg{left:0!important;width:100%!important}
   #topbar #header{left:0!important;top:0!important;transform-origin:0 0}
+
+  /* ===== Frota ===== */
+  #fleet{position:absolute;left:72px;top:3150px;width:1776px;height:1300px}
+  #fleet .kicker{font:600 30px/1 Inter,sans-serif;letter-spacing:8px;text-transform:uppercase;color:#7fc8ff}
+  #fleet h2{margin-top:22px;font:700 110px/1 Inter,sans-serif;letter-spacing:6px;color:#fff}
+  #fleetTotal{position:absolute;right:0;top:0;text-align:right;color:#fff}
+  #fleetTotal b{display:block;font:800 190px/.9 "Alumni Sans",sans-serif;background:linear-gradient(to top,rgba(255,255,255,.15),#c9d6db 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #fleetTotal span{font:300 34px/1 Inter,sans-serif;letter-spacing:4px;color:#cfd8dc}
+  #fleetTabs{position:absolute;left:0;top:215px;display:flex;gap:22px}
+  #fleetTabs button{display:flex;align-items:center;gap:16px;height:78px;padding:0 30px 0 36px;border-radius:40px;border:2px solid rgba(255,255,255,.55);background:rgba(0,68,240,.05);font:500 36px/1 var(--sf);color:#fff;letter-spacing:1px;transition:background .3s,color .3s,border-color .3s,transform .2s}
+  #fleetTabs button:hover{transform:translateY(-3px);border-color:#fff}
+  #fleetTabs button i{font-style:normal;min-width:52px;height:46px;padding:0 12px;border-radius:23px;background:rgba(255,255,255,.14);font:600 26px/46px Inter,sans-serif;text-align:center;transition:background .3s,color .3s}
+  #fleetTabs button.on{background:#fff;color:#04121f;border-color:#fff}
+  #fleetTabs button.on i{background:#04121f;color:#fff}
+  #fleetInfo{position:absolute;left:0;top:340px;width:1300px;transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
+  #fleetInfo.out{opacity:0;transform:translateY(14px)}
+  #fleetInfo h3{font:600 48px/1.1 Inter,sans-serif;color:#fff;letter-spacing:1px}
+  #fleetInfo h3 small{font:300 34px Inter,sans-serif;color:#9fb3bd;margin-left:18px;letter-spacing:2px}
+  #fleetInfo p{margin-top:18px;font:300 34px/1.35 Inter,sans-serif;letter-spacing:1px;color:#dfe8ec}
+  #fleetNav{position:absolute;right:0;top:420px;display:flex;gap:22px}
+  #fleetNav button{width:92px;height:92px;border-radius:50%;border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;transition:background .25s,opacity .25s,transform .2s}
+  #fleetNav button:hover{background:rgba(255,255,255,.12);transform:scale(1.06)}
+  #fleetNav button:disabled{opacity:.25;pointer-events:none}
+  #fleetNav svg{width:38px;height:38px}
+  #fleetTrack{position:absolute;left:0;top:560px;width:1776px;height:650px;display:flex;gap:44px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;transition:opacity .2s}
+  #fleetTrack::-webkit-scrollbar{display:none}
+  #fleetTrack.drag{cursor:grabbing;scroll-snap-type:none}
+  #fleetTrack.fade{opacity:0}
+  .vcard{flex:0 0 540px;height:620px;scroll-snap-align:start;border-radius:34px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 40px rgba(0,0,0,.35);animation:vin .6s cubic-bezier(.2,.7,.2,1) both;user-select:none}
+  @keyframes vin{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:none}}
+  .vcard .ph{position:relative;height:346px;overflow:hidden;background:#0b2236}
+  .vcard .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none}
+  .vcard:hover .ph img{transform:scale(1.06)}
+  .vcard .tag{position:absolute;left:24px;top:24px;padding:10px 18px;border-radius:22px;background:rgba(4,18,31,.72);backdrop-filter:blur(6px);font:600 24px/1 Inter,sans-serif;letter-spacing:2px;color:#fff}
+  .vcard .bd{padding:30px 34px 0}
+  .vcard h4{font:700 40px/1.1 Inter,sans-serif;color:#fff;letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vcard ul{list-style:none;display:grid;grid-template-columns:1.1fr 1.1fr .8fr;gap:22px;margin-top:30px}
+  .vcard li{display:flex;flex-direction:column;gap:10px;min-width:0}
+  .vcard li svg{width:38px;height:38px;color:#7fc8ff}
+  .vcard li b{font:600 31px/1.15 Inter,sans-serif;color:#fff}
+  .vcard li span{font:300 22px/1.2 Inter,sans-serif;color:#9fb3bd;letter-spacing:.5px}
+  #fleetBar{position:absolute;left:0;top:1240px;width:1500px;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+  #fleetThumb{position:absolute;left:0;top:0;height:100%;border-radius:3px;background:#fff;transition:width .3s}
+  #fleetCount{position:absolute;right:0;top:1226px;font:400 30px/1 Inter,sans-serif;color:#cfd8dc;letter-spacing:2px}
 </style>
 </head>
 <body>
@@ -222,6 +266,22 @@
     </div>
   </div>
 
+  <!-- Frota -->
+  <section class="abs" id="fleet" aria-label="Nossa frota">
+    <div class="kicker">OceanPact CBO</div>
+    <h2>Nossa frota</h2>
+    <div id="fleetTotal"><b id="fleetTotalN">70</b><span>embarcações</span></div>
+    <div id="fleetTabs" role="tablist"></div>
+    <div id="fleetInfo"><h3></h3><p></p></div>
+    <div id="fleetNav">
+      <button id="fleetPrev" aria-label="Anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button id="fleetNext" aria-label="Próximas"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div id="fleetTrack"></div>
+    <div id="fleetBar"><div id="fleetThumb"></div></div>
+    <div id="fleetCount"></div>
+  </section>
+
   <!-- Rodapé -->
   <div class="abs" id="fLogo"><img class="cover" src="assets/footer-logo.png" alt="OceanPact"></div>
   <p class="abs fTxt" id="fPhone">55 (21) 3032-6700</p>
@@ -242,7 +302,7 @@
   var content=document.getElementById('content'), hbg=document.getElementById('headerBg'), hdr=document.getElementById('header');
   function fit(){var vw=document.documentElement.clientWidth, w=Math.min(vw,MAXW), s=w/1920, V=vw/s, off=(V-1920)/2;
     page.style.width=V+'px'; page.style.transform='scale('+s+')'; content.style.left=off+'px';
-    stage.style.width='100%'; stage.style.height=(4222*s)+'px';
+    stage.style.width='100%'; stage.style.height=(5454*s)+'px';
     hbg.style.height=(90*s)+'px'; hdr.style.transform='translate('+(off*s)+'px,'+(15*s)+'px) scale('+s+')';
     if(window.onFit) window.onFit(V);}
   var decoIn=document.querySelector('#decoBg > div');
@@ -330,6 +390,65 @@
   detail.addEventListener('scroll',syncThumb);
   select(0);
 })();
+
+  // ===== Frota =====
+  var FLEET=[{"k": "PSV", "full": "Platform Supply Vessel", "desc": "Apoio logístico seguro e eficiente para unidades marítimas de perfuração e produção: levam suprimentos, equipamentos, água, combustível e fluidos até as plataformas.", "v": [{"n": "Ilha de Santana", "i": "ilha-de-santana", "a": "844 m²", "w": "4.200 t", "dp": "DP2"}, {"n": "UP Topázio", "i": "up-topazio", "a": "844 m²", "w": "4.200 t", "dp": "DP1"}, {"n": "Ilha do Marajó", "i": "ilha-do-marajo", "a": "844 m²", "w": "4.200 t", "dp": "DP2"}, {"n": "UP Diamante", "i": "up-diamante", "a": "844 m²", "w": "4.200 t", "dp": "DP1"}, {"n": "Ilha do Cabo Frio", "i": "ilha-do-cabo-frio", "a": "680 m²", "w": "3.200 t", "dp": "DP2"}, {"n": "Ilha de São Sebastião", "i": "ilha-de-sao-sebastiao", "a": "680 m²", "w": "3.200 t", "dp": "DP2"}, {"n": "CBO Alessandra", "i": "cbo-alessandra", "a": "720 m²", "w": "3.421 t", "dp": "DP2"}, {"n": "CBO Aliança", "i": "cbo-alianca", "a": "940 m²", "w": "4.645,7 t", "dp": "DP2"}, {"n": "CBO Ana Luisa", "i": "cbo-ana-luisa", "a": "720 m²", "w": "3.459 t", "dp": "DP1"}, {"n": "CBO Anita", "i": "cbo-anita", "a": "720 m²", "w": "3.401 t", "dp": "DP2"}, {"n": "CBO Anna Gabriella", "i": "cbo-anna-gabriella", "a": "695 m²", "w": "3.689 t", "dp": "DP1"}, {"n": "CBO Arpoador", "i": "cbo-arpoador", "a": "895 m²", "w": "4.532,6 t", "dp": "DP2"}, {"n": "CBO Atlântico", "i": "cbo-atlantico", "a": "660 m²", "w": "3.367 t", "dp": "DP2"}, {"n": "CBO Bianca", "i": "cbo-bianca", "a": "720 m²", "w": "3.436 t", "dp": "DP2"}, {"n": "CBO Carolina", "i": "cbo-carolina", "a": "720 m²", "w": "3.422 t", "dp": "DP2"}, {"n": "CBO Copacabana", "i": "cbo-copacabana", "a": "945 m²", "w": "4.532 t", "dp": "DP2"}, {"n": "CBO Flamengo", "i": "cbo-flamengo", "a": "945 m²", "w": "4.547 t", "dp": "DP2"}, {"n": "CBO Ipanema", "i": "cbo-ipanema", "a": "895 m²", "w": "4.558,9 t", "dp": "DP2"}, {"n": "CBO Itajaí", "i": "cbo-itajai", "a": "940 m²", "w": "4.528,8 t", "dp": "DP2"}, {"n": "CBO Mistral", "i": "cbo-mistral", "a": "1.000 m²", "w": "5.549 t", "dp": "DP2"}, {"n": "CBO Oceana", "i": "cbo-oceana", "a": "940 m²", "w": "4.582,1 t", "dp": "DP2"}, {"n": "CBO Pacífico", "i": "cbo-pacifico", "a": "660 m²", "w": "3.367 t", "dp": "DP2"}, {"n": "CBO Renata", "i": "cbo-renata", "a": "720 m²", "w": "3.423 t", "dp": "DP2"}, {"n": "CBO Supporter", "i": "cbo-supporter", "a": "1.033 m²", "w": "4.907 t", "dp": "DP2"}, {"n": "CBO Valentina", "i": "cbo-valentina", "a": "695 m²", "w": "3.623 t", "dp": "DP1"}, {"n": "CBO Wiser", "i": "cbo-wiser", "a": "1.000 m²", "w": "4.900 t", "dp": "DP2"}, {"n": "CBO Siddis Sailor", "i": "cbo-siddis-sailor", "a": "1.000 m²", "w": "5.394 t", "dp": "DP2"}]}, {"k": "OSRV", "full": "Oil Spill Recovery Vessel", "desc": "Equipadas com os mais modernos sistemas de combate a derramamento de óleo, para monitoramento, detecção, contenção e recolhimento de hidrocarbonetos em tempo real.", "v": [{"n": "Ilha das Flechas", "i": "ilha-das-flechas", "a": "280 m²", "w": "430 t", "dp": "DP1"}, {"n": "Macaé", "i": "macae", "a": "450 m²", "w": "1.500 t", "dp": "DP1"}, {"n": "Martin Vaz", "i": "martin-vaz", "a": "450 m²", "w": "1.500 t", "dp": "DP1"}, {"n": "Ilha de Tinharé", "i": "ilha-de-tinhare", "a": "450 m²", "w": "1.500 t", "dp": "DP1"}, {"n": "Jim O’Brien", "i": "jim-obrien", "a": "200 m²", "w": "1.700 t", "dp": "DP1"}, {"n": "Ilha da Trindade", "i": "ilha-da-trindade", "a": "450 m²", "w": "1.500 t", "dp": "DP1"}, {"n": "Fernando de Noronha", "i": "fernando-de-noronha", "a": "200 m²", "w": "1.700 t", "dp": "DP1"}, {"n": "CBO Niterói", "i": "cbo-niteroi", "a": "260 m²", "w": "1.526 t", "dp": "DP1"}, {"n": "CBO Rio", "i": "cbo-rio", "a": "405 m²", "w": "2.992 t", "dp": "DP1"}, {"n": "CBO Vitória", "i": "cbo-vitoria", "a": "380 m²", "w": "2.827 t", "dp": "DP1"}]}, {"k": "AHTS", "full": "Anchor Handling Tug Supply", "desc": "Embarcações de alta potência para reboque e manuseio de âncoras de plataformas e sondas. As AHTS-TO também fazem a manutenção de terminais oceânicos e monoboias e apoiam operações de offloading.", "v": [{"n": "CBO Cabrália", "i": "cbo-cabralia", "a": "560 m²", "w": "3.120 t", "dp": "DP2"}, {"n": "CBO Chiara", "i": "cbo-chiara", "a": "375 m²", "w": "2.855 t", "dp": "DP2"}, {"n": "CBO Camogli", "i": "cbo-camogli", "a": "551 m²", "w": "2.962 t", "dp": "DP2"}, {"n": "CBO AH Giorgio P", "i": "cbo-ah-giorgio-p", "a": "540 m²", "w": "2.582 t", "dp": "DP2"}, {"n": "CBO AH Liguria", "i": "cbo-ah-liguria", "a": "568 m²", "w": "2.944 t", "dp": "DP2"}, {"n": "CBO AH Valletta", "i": "cbo-ah-valletta", "a": "584 m²", "w": "2.774,5 t", "dp": "DP2"}, {"n": "CBO AH Varazze", "i": "cbo-ah-varazze", "a": "592 m²", "w": "2.874 t", "dp": "DP2"}, {"n": "CBO Bossa Nova", "i": "cbo-bossa-nova", "a": "560 m²", "w": "3.209 t", "dp": "DP2"}, {"n": "CBO Endeavour", "i": "cbo-endeavour", "a": "755 m²", "w": "3.913 t", "dp": "DP2"}, {"n": "CBO Iguaçu", "i": "cbo-iguacu", "a": "560 m²", "w": "3.170 t", "dp": "DP2"}, {"n": "CBO Parintins", "i": "cbo-parintins", "a": "560 m²", "w": "3.153 t", "dp": "DP2"}, {"n": "CBO Terra Brasilis", "i": "cbo-terra-brasilis", "a": "560 m²", "w": "3.106 t", "dp": "DP2"}, {"n": "CBO Xavantes", "i": "cbo-xavantes", "a": "560 m²", "w": "3.073 t", "dp": "DP2"}, {"n": "Rochedo de São Pedro", "i": "rochedo-de-sao-pedro", "a": null, "w": "2.500 t", "dp": "DP2"}, {"n": "Rochedo de São Paulo", "i": "rochedo-de-sao-paulo", "a": null, "w": "2.500 t", "dp": "DP2"}]}, {"k": "RSV", "full": "ROV Support Vessel", "desc": "Embarcações com posicionamento dinâmico (DP), preparadas para operações com ROVs, os robôs submarinos, em lâminas d’água de até 3.000 metros.", "v": [{"n": "CBO Campos", "i": "cbo-campos", "a": "300 m²", "w": "3.200 t", "dp": "DP1"}, {"n": "CBO Energy", "i": "cbo-energy", "a": "750 / 1.000 m²", "w": "4.900 t", "dp": "DP2"}, {"n": "CBO Guanabara", "i": "cbo-guanabara", "a": "200 m²", "w": "2.915 t", "dp": "DP1"}, {"n": "CBO Isabella", "i": "cbo-isabella", "a": "200 m²", "w": "2.936 t", "dp": "DP1"}, {"n": "CBO Manoella", "i": "cbo-manoella", "a": "200 m²", "w": "2.866 t", "dp": "DP1"}, {"n": "CBO Wave", "i": "cbo-wave", "a": "810 m²", "w": "4.569 t", "dp": "DP1"}, {"n": "Parcel do Bandolim", "i": "parcel-do-bandolim", "a": null, "w": "3.300 t", "dp": "DP2"}, {"n": "Parcel das Paredes", "i": "parcel-das-paredes", "a": null, "w": "3.500 t", "dp": "DP2"}, {"n": "Parcel de Manuel Luis", "i": "parcel-de-manuel-luis", "a": null, "w": "2.500 t", "dp": "DP2"}, {"n": "Parcel dos Meros", "i": "parcel-dos-meros", "a": null, "w": "3.000 t", "dp": "DP2"}, {"n": "Parcel das Timbebas", "i": "parcel-das-timbebas", "a": null, "w": "2.900 t", "dp": "DP2"}, {"n": "Austral Abrolhos", "i": "austral-abrolhos", "a": null, "w": "1.850 t", "dp": "DP2"}, {"n": "Parcel das Feiticeiras", "i": "parcel-das-feiticeiras", "a": null, "w": "5.100 t", "dp": "DP2"}, {"n": "Parcel do Badejo", "i": "parcel-do-badejo", "a": null, "w": "2.400 t", "dp": "DP2"}, {"n": "Parcel dos Reis", "i": "parcel-dos-reis", "a": null, "w": "3.800 t", "dp": "DP2"}]}, {"k": "RV", "full": "Research Vessel", "desc": "Laboratórios flutuantes para levantamentos oceanográficos, geofísicos e mapeamento do fundo do mar.", "v": [{"n": "Ocean Stalwart", "i": "ocean-stalwart", "a": null, "w": null, "dp": "DP2"}, {"n": "Seward Johnson", "i": "seward-johnson", "a": null, "w": null, "dp": "DP2"}]}, {"k": "OTSV", "full": "Offshore Terminal Support Vessel", "desc": "Apoio a terminais oceânicos e monoboias, com suporte à manutenção dessas estruturas e às operações de offloading.", "v": [{"n": "Ilha do Mosqueiro", "i": "ilha-do-mosqueiro", "a": null, "w": "4.100 t", "dp": "DP2"}]}];
+  (function(){
+    var tabs=document.getElementById('fleetTabs'), info=document.getElementById('fleetInfo'), track=document.getElementById('fleetTrack');
+    var prev=document.getElementById('fleetPrev'), next=document.getElementById('fleetNext'), thumb=document.getElementById('fleetThumb'), count=document.getElementById('fleetCount');
+    var total=0; FLEET.forEach(function(t){total+=t.v.length}); document.getElementById('fleetTotalN').textContent=total;
+    var ICON={
+      a:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="13" height="13" rx="1"/><path d="M4 4v16h16"/><path d="M2.5 4h3M2.5 20h3M20 21.5v-3M4 21.5v-3"/></svg>',
+      w:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.5" r="2.5"/><path d="M7.5 8h9l3.5 12.5H4z"/></svg>',
+      dp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1.5v4M12 18.5v4M1.5 12h4M18.5 12h4"/></svg>'
+    };
+    function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+    FLEET.forEach(function(t,i){
+      var b=document.createElement('button'); b.setAttribute('role','tab'); b.innerHTML=t.k+' <i>'+t.v.length+'</i>';
+      b.onclick=function(){show(i)}; tabs.appendChild(b);
+    });
+    // pré-carrega as fotos
+    window.addEventListener('load',function(){setTimeout(function(){FLEET.forEach(function(t){t.v.forEach(function(v){var im=new Image();im.src='assets/frota/'+v.i+'.webp'})})},1500)});
+    var cur=-1, step=584;
+    function card(v,t,j){
+      return '<article class="vcard" style="animation-delay:'+(Math.min(j,5)*70)+'ms">'+
+        '<div class="ph"><img draggable="false" src="assets/frota/'+v.i+'.webp" alt="'+esc(v.n)+'"><span class="tag">'+t.k+'</span></div>'+
+        '<div class="bd"><h4 title="'+esc(v.n)+'">'+esc(v.n)+'</h4><ul>'+
+        '<li>'+ICON.a+'<b>'+esc(v.a||'—')+'</b><span>Área de convés</span></li>'+
+        '<li>'+ICON.w+'<b>'+esc(v.w||'—')+'</b><span>Porte bruto</span></li>'+
+        '<li>'+ICON.dp+'<b>'+esc(v.dp||'—')+'</b><span>Posic. dinâmico</span></li>'+
+        '</ul></div></article>';
+    }
+    function show(i){
+      if(i===cur) return; var first=cur<0; cur=i; var t=FLEET[i];
+      [].forEach.call(tabs.children,function(b,k){b.classList.toggle('on',k===i); b.setAttribute('aria-selected',k===i)});
+      info.classList.add('out'); track.classList.add('fade');
+      setTimeout(function(){
+        info.querySelector('h3').innerHTML=t.k+'<small>'+t.full+'</small>';
+        info.querySelector('p').textContent=t.desc;
+        track.innerHTML=t.v.map(function(v,j){return card(v,t,j)}).join('');
+        track.scrollLeft=0; info.classList.remove('out'); track.classList.remove('fade'); update();
+      }, first?0:220);
+    }
+    function update(){
+      var n=FLEET[cur].v.length, max=track.scrollWidth-track.clientWidth;
+      var vis=Math.max(1,Math.floor((track.clientWidth+44)/step)), start=Math.round(track.scrollLeft/step)+1, end=Math.min(n,start+vis-1);
+      count.textContent=(n>vis? start+'–'+end+' de '+n : n+(n>1?' embarcações':' embarcação'));
+      var w=Math.min(1,track.clientWidth/Math.max(track.scrollWidth,1));
+      thumb.style.width=(w*100)+'%'; thumb.style.left=(max>0?(1-w)*100*track.scrollLeft/max:0)+'%';
+      prev.disabled=track.scrollLeft<=4; next.disabled=track.scrollLeft>=max-4;
+    }
+    track.addEventListener('scroll',update,{passive:true});
+    prev.onclick=function(){track.scrollBy({left:-step*3,behavior:'smooth'})};
+    next.onclick=function(){track.scrollBy({left:step*3,behavior:'smooth'})};
+    // arrastar com o mouse
+    var down=false,sx=0,sl=0,moved=0;
+    track.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;moved=0;sx=e.clientX;sl=track.scrollLeft;track.classList.add('drag')});
+    window.addEventListener('pointermove',function(e){if(!down)return;var sc=track.getBoundingClientRect().width/track.offsetWidth||1;var dx=(e.clientX-sx)/sc;moved=Math.abs(dx);track.scrollLeft=sl-dx});
+    window.addEventListener('pointerup',function(){if(!down)return;down=false;track.classList.remove('drag');var t=Math.round(track.scrollLeft/step)*step;track.scrollTo({left:t,behavior:'smooth'})});
+    track.addEventListener('click',function(e){if(moved>6){e.preventDefault();e.stopPropagation()}},true);
+    show(0);
+  })();
 </script>
 </body>
 </html>
