@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OceanPact CBO — Linkedin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@800&family=Alumni+Sans+SC:wght@700&family=Inter:wght@300;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sf: -apple-system, "SF Pro Display", "SF Pro", "Segoe UI", Inter, system-ui, sans-serif;
+    --title-grad: linear-gradient(to top, rgba(255,255,255,0) 7.748%, rgba(193,198,200,.11) 9.895%, #848e91 64.419%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#020b14;overflow-x:hidden}
+  button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+  a{color:inherit;text-decoration:none}
+
+  /* Canvas desenhado em 1920px, escalado para a largura da janela */
+  #stage{position:relative;width:100%;margin:0 auto;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,.45)}
+  #page{position:absolute;top:0;left:0;width:1920px;height:4222px;overflow:hidden;background:#fff;transform-origin:0 0}
+  .abs{position:absolute}
+  .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+
+  /* Fundos */
+  #ocean{left:-31px;top:-45px;width:1968px;height:4334px}
+  #decoBg{left:-32px;top:2712px;width:2165px;height:1536px;display:flex;align-items:center;justify-content:center}
+  #decoBg div{flex:none;width:1536px;height:2165px;transform:rotate(-90deg);filter:blur(7.95px);position:relative}
+  #decoBg img{object-position:bottom;opacity:.15}
+  #heroBg{left:-60px;top:0;width:2148px;height:1209px}
+  #heroBg img{opacity:.16}
+
+  /* Header */
+  #headerBg{left:4px;top:0;width:1920px;height:90px;background:rgba(235,234,234,.05);border:1px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  #header{left:0;top:15px;width:1920px;padding:0 33px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:8px;font-family:var(--sf);font-weight:600;font-size:50px;color:#fff;white-space:nowrap}
+  .brand img{width:65px;height:44px}
+  nav.primary{display:flex;gap:39px;font-family:var(--sf);font-weight:300;font-size:40px;color:#fff;white-space:nowrap}
+  nav.primary a{transition:opacity .2s}
+  nav.primary a:hover{opacity:.7}
+
+  /* Hero */
+  #heroTitle{left:33px;top:275px;width:677px;font:700 100px/1 Inter,sans-serif;letter-spacing:8px;color:#fff}
+  #heroText{left:40px;top:398px;width:880px;letter-spacing:-.3px;font:400 50px/1 var(--sf);color:#d2d2d2}
+  #btnSite{left:42px;top:634px;width:206px;height:71px;border-radius:33px;background:rgba(0,68,240,.05);border:1px solid #fff;font:400 40px/1 var(--sf);color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  #btnSite:hover{background:rgba(255,255,255,.12)}
+  #btnMore{left:308px;top:629px;width:334px;height:78px;border-radius:33px;background:#fff;font:400 45px/1 var(--sf);color:#000;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+  #btnMore:hover{transform:scale(1.03)}
+
+  .grad-title{background:var(--title-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #tOcean{left:974px;top:720px;width:1114px;font:700 250px/1 "Alumni Sans SC",sans-serif;letter-spacing:12.5px;white-space:nowrap}
+  #tCbo{left:1239px;top:860px;width:485px;font:800 400px/1 "Alumni Sans",sans-serif}
+  #whale{left:-221px;top:664px;width:1551px;height:873px}
+
+  /* Carrossel */
+  #carousel{left:817px;top:193px;width:1178px;height:549px;padding:40px 64px;display:flex;flex-direction:column;gap:24px;align-items:center}
+  .viewport{position:relative;flex:1 0 0;width:100%}
+  .slides{position:absolute;inset:0 40px;
+    -webkit-mask-image:url("assets/carousel-mask.svg");mask-image:url("assets/carousel-mask.svg");
+    -webkit-mask-position:-104px -56px;mask-position:-104px -56px;
+    -webkit-mask-size:calc(100% + 208px) calc(100% + 153px);mask-size:calc(100% + 208px) calc(100% + 153px);
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+  .slide{position:absolute;overflow:hidden;border-radius:40px;background:#fff;transition:inset .6s cubic-bezier(.4,0,.2,1)}
+  .slide[data-pos="0"]{inset:0 220px 0 200px;z-index:3;cursor:default}
+  .slide[data-pos="-1"]{inset:40px 516px 40px 64px;z-index:2}
+  .slide[data-pos="1"]{inset:40px 64px 40px 516px;z-index:2}
+  .slide[data-pos="-2"]{inset:80px 740px 80px 0;z-index:1}
+  .slide[data-pos="2"]{inset:80px 0 80px 740px;z-index:1}
+  .cnav{display:flex;gap:8px;align-items:center;justify-content:center;padding:8px}
+  .cnav > button{padding:8px;display:flex}
+  .cnav > button img{width:24px;height:24px;display:block}
+  .dots{display:flex;gap:10px;align-items:center;padding:8px}
+  .dots button{position:relative;width:12px;height:12px;display:block}
+  .dots button.on{width:16px;height:16px}
+  .dots img{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+  /* Unidades */
+  #units{left:18px;top:1415px;width:1892px;height:1777px}
+  #decoComp{position:absolute;left:0;top:0;z-index:5;pointer-events:none}
+  #decoComp .flip{position:absolute;left:1300px;top:-296px;width:736px;height:1104px;transform:scaleX(-1)}
+  #decoComp .blur{filter:blur(22.5px)}
+  #sidebarBg{left:72px;top:353px;width:431px;height:1286px}
+  #sidebarBg img{position:absolute;left:-3.25%;right:-3.25%;top:-.78%;bottom:-1.4%;width:106.5%;height:102.18%;display:block}
+  #unitsHeader{left:80px;top:373px;width:414px;text-align:center;font:860 40px/1.2 var(--sf);font-weight:900;letter-spacing:5.2px;color:#fff}
+  .unit{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;font:700 35px/1.204 var(--sf);letter-spacing:4.55px;color:#fff;transition:opacity .2s}
+  .unit:hover{opacity:.75}
+  #indicator{left:124px;width:332px;height:55px;transition:top .45s cubic-bezier(.4,0,.2,1);pointer-events:none}
+  #indicator img{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #scrollThin{left:47px;top:450px;width:10px;height:204px;border-radius:30px;background:rgba(63,63,63,.5);border:1px solid #fff;box-shadow:0 4px 9.2px rgba(0,0,0,.25)}
+
+  #detail{left:525px;top:353px;width:1234px;height:1257px;overflow-y:auto;scrollbar-width:none}
+  #detail::-webkit-scrollbar{display:none}
+  #detailImg{position:relative;isolation:isolate;display:block;width:1208px;height:442px;background:#d9d9d9;overflow:hidden;border-radius:6px;cursor:pointer}
+  #detailImg img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.06);transition:opacity .55s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  #detailImg img.show{opacity:1;transform:scale(1)}
+  #detailImg:hover img.show{transform:scale(1.03)}
+  #detailImg .go{z-index:2}
+  #detailImg .ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(135deg,#0a2a4a,#04121f 60%,#0d3b5c);font:800 90px/1 "Alumni Sans",sans-serif;letter-spacing:6px;color:rgba(255,255,255,.85);text-align:center;padding:0 40px}
+  #detailImg .go{position:absolute;right:28px;bottom:28px;padding:16px 30px;border-radius:33px;background:#fff;color:#000;font:400 32px/1 var(--sf);opacity:0;transform:translateY(10px);transition:all .3s}
+  #detailImg:hover .go{opacity:1;transform:none}
+  #detailBody{transition:opacity .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+  #detailBody.out{opacity:0;transform:translateY(18px);transition:opacity .18s ease,transform .18s ease}
+  #detailTitle{margin-top:34px;font:700 50px/1.1 Inter,sans-serif;letter-spacing:3px;color:#fff}
+  #detailText{margin-top:22px;width:1208px;font:300 35px/1.35 Inter,sans-serif;letter-spacing:1.4px;color:#e6edf2;word-break:break-word}
+  #detailLink{display:inline-block;margin-top:30px;font:400 32px/1 var(--sf);color:#9fd3ff;border-bottom:1px solid currentColor;padding-bottom:4px}
+  #detailLink:hover{color:#fff}
+  #track{left:1758.75px;top:364px;width:18.74px;height:1257.5px;border-radius:75px;background:rgba(226,226,226,.05)}
+  #thumb{left:0;top:0;width:100%;height:482px;border-radius:75px;background:#272525;border:1px solid #fff}
+
+  /* Rodapé */
+  #fLogo{left:40px;top:3328px;width:357px;height:228px}
+  .fTxt{left:42px;width:620px;font:600 30px/1 Inter,sans-serif;letter-spacing:4.5px;color:#fff}
+  #fPhone{top:3580px}
+  #fAddr{top:3656px;font-weight:500}
+  #fSocial{left:42px;top:3786px;width:251px;height:112px;overflow:hidden}
+  #fSocial img{position:absolute;height:100%;left:-8.76%;top:0;width:115.54%;max-width:none}
+  #fEmerg{left:42px;top:3964px;width:650px;height:69px;border-radius:22px;background:#fff;padding:12px 16px;font:600 35px/1 Inter,sans-serif;letter-spacing:1.4px;color:#000;white-space:nowrap}
+  #copy{left:42px;top:4130px;font:600 22px/1 Inter,sans-serif;letter-spacing:1.5px;color:#fff;opacity:.85}
+  #topbar{position:fixed;top:0;left:0;width:1920px;height:90px;transform-origin:0 0;z-index:50}
+  #topbar #headerBg{transition:background .3s;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}
+  #topbar.scrolled #headerBg{background:rgba(4,18,34,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  nav.primary a.on{text-decoration:underline;text-underline-offset:10px}
+
+  #bg #ocean{left:-1.6%;width:103.2%}
+  #bg #ocean img{object-position:top}
+  #bg #heroBg{left:-3.1%;width:111.9%}
+  #bg #decoBg{left:0;width:100%}
+  /* Layout: fundos ocupam a tela toda; conteúdo centralizado em escala menor */
+  #page{width:1920px}
+  #bg{position:absolute;left:0;top:0;width:100%;height:4222px;overflow:hidden}
+  #content{position:absolute;top:0;left:0;width:1920px;height:4222px}
+  #stage{box-shadow:none!important}
+  #topbar{width:100%!important;height:auto;transform:none!important}
+  #topbar #headerBg{left:0!important;width:100%!important}
+  #topbar #header{left:0!important;top:0!important;transform-origin:0 0}
+</style>
+</head>
+<body>
+<div id="topbar">
+  <div class="abs" id="headerBg"></div>
+  <header class="abs" id="header">
+    <a class="brand" href="linkedin.html"><img src="assets/linkedin.svg" alt="">Linkedin</a>
+    <nav class="primary">
+      <a href="index.html" class="on">Início</a><a href="#">Rotina</a><a href="#">Ferramentas</a><a href="#">Setores</a><a href="#">Programa Horizontes</a>
+    </nav>
+  </header>
+</div>
+<div id="stage">
+<div id="page">
+  <div id="bg">
+    <div class="abs" id="ocean"><img class="cover" src="assets/ocean-bg.jpg" alt=""></div>
+    <div class="abs" id="decoBg"><div><img class="cover" src="assets/deco-bg.png" alt=""></div></div>
+    <div class="abs" id="heroBg"><img class="cover" src="assets/hero-bg.png" alt=""></div>
+  </div>
+  <div id="content">
+
+  <!-- Fundos -->
+
+  <!-- Unidades -->
+  <section class="abs" id="units" aria-label="Unidades">
+    <div class="abs" id="track"><div class="abs" id="thumb"></div></div>
+    <div class="abs" id="detail">
+      <a id="detailImg" target="_blank" rel="noopener"></a>
+      <div id="detailBody">
+        <h3 id="detailTitle"></h3>
+        <p id="detailText"></p>
+        <a id="detailLink" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+    <div class="abs" id="scrollThin"></div>
+
+    <div id="decoComp">
+      <div class="flip blur"><img class="cover" src="assets/deco-base.png" alt=""></div>
+      <div class="flip"><img class="cover" src="assets/deco-overlay.png" alt=""></div>
+    </div>
+
+    <div class="abs" id="sidebarBg"><img src="assets/sidebar-bg.svg" alt=""></div>
+    <h2 class="abs" id="unitsHeader">Unidades</h2>
+    <nav id="unitNav" aria-label="Unidades de negócio">
+      <button class="unit" data-i="0" style="left:290.7px;top:459px;width:315px">OceanPact CBO</button>
+      <button class="unit" data-i="1" style="left:290.5px;top:568.24px;width:237px">EnvironPact</button>
+      <button class="unit" data-i="2" style="left:290.5px;top:677.49px;width:109px">Aiuká</button>
+      <button class="unit" data-i="3" style="left:290.5px;top:786.73px;width:261px">OceanImPact</button>
+      <button class="unit" data-i="4" style="left:290px;top:895.97px;width:420px">OceanPact<br>Geociências</button>
+      <button class="unit" data-i="5" style="left:290.5px;top:1047.42px;width:381px">OceanPact<br>Logística</button>
+      <button class="unit" data-i="6" style="left:290px;top:1198.86px;width:296px">OceanPact<br>Tech</button>
+      <button class="unit" data-i="7" style="left:290.5px;top:1350.31px;width:333px">OceanPact<br>Digital</button>
+      <button class="unit" data-i="8" style="left:290.5px;top:1501.75px;width:213px">DockBrasil</button>
+    </nav>
+    <div class="abs" id="indicator" style="top:486.8px"><img src="assets/active-indicator.svg" alt=""></div>
+  </section>
+
+  <!-- Títulos -->
+  <p class="abs grad-title" id="tOcean">OceanPact</p>
+  <p class="abs grad-title" id="tCbo">CBO</p>
+  <div class="abs" id="whale"><img class="cover" src="assets/whale.png" alt=""></div>
+
+  <!-- Header -->
+
+  <!-- Hero -->
+  <h1 class="abs" id="heroTitle">Linked in</h1>
+  <p class="abs" id="heroText">Servindo para criar conexões, o Linkedin vem para sanar a carência em redes sociais no universo corporativo.</p>
+  <a class="abs" id="btnSite" href="https://www.oceanpact.com" target="_blank" rel="noopener">Site</a>
+  <a class="abs" id="btnMore" href="linkedin.html">Saiba Mais</a>
+
+  <!-- Carrossel -->
+  <div class="abs" id="carousel">
+    <div class="viewport">
+      <div class="slides" id="slides">
+        <button class="slide" data-k="0"><img class="cover" src="assets/slide1.png" alt=""></button>
+        <button class="slide" data-k="1"><img class="cover" src="assets/slide2.png" alt=""></button>
+        <button class="slide" data-k="2"><img class="cover" src="assets/slide3.png" alt=""></button>
+        <button class="slide" data-k="3"><img class="cover" src="assets/slide4.png" alt=""></button>
+        <button class="slide" data-k="4"><img class="cover" src="assets/slide5.png" alt=""></button>
+      </div>
+    </div>
+    <div class="cnav">
+      <button id="prev" aria-label="Anterior"><img src="assets/chevron-left.svg" alt=""></button>
+      <div class="dots" id="dots"></div>
+      <button id="next" aria-label="Próximo"><img src="assets/chevron-right.svg" alt=""></button>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <div class="abs" id="fLogo"><img class="cover" src="assets/footer-logo.png" alt="OceanPact"></div>
+  <p class="abs fTxt" id="fPhone">55 (21) 3032-6700</p>
+  <p class="abs fTxt" id="fAddr">Rua da Glória, 122 - 11º andar<br>Glória, Rio de Janeiro/RJ - Brasil<br>CEP: 20241-180</p>
+  <div class="abs" id="fSocial"><img src="assets/social.png" alt="Redes sociais"></div>
+  <div class="abs" id="fEmerg">EMERGÊNCIA 24H 0800 601 7228</div>
+  <p class="abs" id="copy">Copyright © 2026. Todos os direitos reservados OceanPact.</p>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  // Escala o canvas de 1920px para a largura da janela
+  var page=document.getElementById('page'), stage=document.getElementById('stage');
+  var topbar=document.getElementById('topbar');
+  var MAXW=1280; // largura máxima do conteúdo
+  var content=document.getElementById('content'), hbg=document.getElementById('headerBg'), hdr=document.getElementById('header');
+  function fit(){var vw=document.documentElement.clientWidth, w=Math.min(vw,MAXW), s=w/1920, V=vw/s, off=(V-1920)/2;
+    page.style.width=V+'px'; page.style.transform='scale('+s+')'; content.style.left=off+'px';
+    stage.style.width='100%'; stage.style.height=(4222*s)+'px';
+    hbg.style.height=(90*s)+'px'; hdr.style.transform='translate('+(off*s)+'px,'+(15*s)+'px) scale('+s+')';
+    if(window.onFit) window.onFit(V);}
+  var decoIn=document.querySelector('#decoBg > div');
+  window.onFit=function(V){decoIn.style.transform='rotate(-90deg) scale(1,'+(V/2165*1.02)+')'};
+  window.addEventListener('resize',fit);fit();
+  function onScroll(){topbar.classList.toggle('scrolled',window.scrollY>10)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // Carrossel
+  var slides=[].slice.call(document.querySelectorAll('.slide')), n=slides.length, cur=0;
+  var dots=document.getElementById('dots');
+  for(var i=0;i<n;i++){var b=document.createElement('button');b.setAttribute('aria-label','Slide '+(i+1));b.dataset.k=i;b.innerHTML='<img alt="">';dots.appendChild(b);}
+  function render(){
+    slides.forEach(function(s,k){var d=((k-cur)%n+n)%n; if(d>2)d-=n; s.dataset.pos=d;});
+    [].forEach.call(dots.children,function(b,k){var on=k===cur;b.classList.toggle('on',on);b.firstChild.src=on?'assets/dot-active.svg':'assets/dot.svg';});
+  }
+  function go(k){cur=((k%n)+n)%n;render();}
+  document.getElementById('prev').onclick=function(){go(cur-1)};
+  document.getElementById('next').onclick=function(){go(cur+1)};
+  dots.onclick=function(e){var b=e.target.closest('button');if(b)go(+b.dataset.k)};
+  slides.forEach(function(s,k){s.onclick=function(){go(k)}});
+  render();
+  var timer=setInterval(function(){go(cur+1)},5000);
+  document.getElementById('carousel').addEventListener('mouseenter',function(){clearInterval(timer)});
+
+  // Unidades: troca o conteúdo e move o indicador (onda + tartaruga)
+  // Conteúdo de cada unidade: imagem (clicável), resumo e site
+  var UNITS=[
+    {name:'OceanPact CBO',url:'https://oceanpact.com/unidades/oceanpact-cbo/',img:'assets/units/cbo.jpg',
+     text:'A força de apoio marítimo do grupo. Une a experiência de quase 50 anos da CBO, fundada em 1978 e pioneira na construção de embarcações de apoio no Brasil, à frota da OceanPact, somando potência operacional para logística offshore e proteção ambiental.'},
+    {name:'EnvironPact',url:'https://environpact.com/',img:'assets/units/environpact.jpg',
+     text:'Consultoria em sustentabilidade, resiliência, riscos e segurança operacional. Faz estudos e licenciamento ambiental, gerenciamento de riscos, planos de contingência, auditorias e treinamentos, com uma equipe que conhece a operação na prática.'},
+    {name:'Aiuká',url:'https://aiuka.com.br/',img:'assets/units/aiuka.jpg',
+     text:'Referência em proteção, resgate e reabilitação de fauna aquática, terrestre e aérea. Atua em monitoramento e conservação, em planos de atendimento à fauna em emergências ambientais e em centros de reabilitação, com veterinários e biólogos prontos para atuar em todo o país.'},
+    {name:'OceanImPact',url:'https://oceanpact.com/unidades/oceanimpact/',img:'assets/units/oceanimpact.jpg',
+     text:'Unidade de negócios para a economia azul. Desenvolve projetos de impacto e inovação socioambiental no oceano e nos ecossistemas costeiros, apoiando empresas na transição ecológica, da concepção da solução à operação e à medição dos resultados.'},
+    {name:'OceanPact Geociências',url:'https://oceanpact.com/unidades/oceanpact-geociencias/',img:'assets/units/geociencias.jpg',
+     text:'Especializada em geociências e levantamento de dados no mar. Com embarcações de pesquisa e um dos maiores inventários de sensores da América Latina, faz mapeamento do fundo do mar, geotecnia marinha, posicionamento de precisão e monitoramento oceanográfico.'},
+    {name:'OceanPact Logística',url:'https://oceanpact.com/unidades/oceanpact-logistica/',img:'assets/units/logistica.jpg',
+     text:'Elo entre as operações offshore e o suporte em terra. Opera bases em Niterói, Macaé e no Porto do Açu, cuida da armazenagem de equipamentos de resposta a emergências, da logística de descomissionamento e do transporte com frota própria, com prontidão 24 horas.'},
+    {name:'OceanPact Tech',url:'https://oceanpact.com/unidades/oceanpact-tech/',img:'assets/units/tech.jpg',
+     text:'Unidade de desenvolvimento tecnológico, com sede na Ilha do Fundão, focada em operações cada vez mais autônomas: drones para monitoramento e inspeção, gliders e embarcações autônomas para coleta de dados, ROVs de observação e instrumentação oceanográfica.'},
+    {name:'OceanPact Digital',url:'https://oceanpact.com/digital/',img:'assets/units/digital.jpg',
+     text:'Plataforma que mostra em uma única tela tudo o que acontece numa operação offshore em tempo real: dados ambientais, telemetria da frota, câmeras a bordo, previsões do tempo e do mar e radares de detecção de óleo. Funciona por módulos, no modelo SaaS.'},
+    {name:'DockBrasil',url:'https://estaleirodockbrasil.com.br/',img:'assets/units/dockbrasil.jpg',
+     text:'Estaleiro do grupo no Gradim, em São Gonçalo (RJ), às margens da Baía de Guanabara. Faz docagem, reparo, manutenção e modernização de embarcações, de navios de apoio offshore a rebocadores, com dique flutuante de 5.800 toneladas e syncrolift de 3.000 toneladas.'}
+  ];
+  var units=[].slice.call(document.querySelectorAll('.unit')), ind=document.getElementById('indicator');
+  var imgBox=document.getElementById('detailImg'), title=document.getElementById('detailTitle'), text=document.getElementById('detailText'), link=document.getElementById('detailLink');
+  var detail=document.getElementById('detail'), thumb=document.getElementById('thumb');
+  function host(u){return u.replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/\/.*$/,'')}
+  // Pré-carrega todas as imagens assim que a página abre
+  var cache=UNITS.map(function(d){var im=new Image();im.decoding='async';im.src=d.img;return im});
+  var body=document.getElementById('detailBody'), cur=-1, token=0;
+  imgBox.innerHTML='<div class="ph"></div><span class="go">Visitar site ↗</span>';
+  var ph=imgBox.querySelector('.ph');
+  function select(i){
+    if(i===cur) return; cur=i; var my=++token;
+    var u=units[i], d=UNITS[i];
+    ind.style.top=(parseFloat(u.style.top)+u.offsetHeight-14.3)+'px';
+    imgBox.href=d.url; imgBox.title='Abrir o site de '+d.name;
+    // imagem: entra por cima da anterior com fade + leve zoom
+    var src=cache[i], im=document.createElement('img'); im.alt=d.name; im.src=src.src;
+    var old=[].slice.call(imgBox.querySelectorAll('img'));
+    imgBox.insertBefore(im,imgBox.querySelector('.go'));
+    var show=function(){ if(my!==token){im.remove();return}
+      ph.style.display='none';
+      requestAnimationFrame(function(){requestAnimationFrame(function(){im.classList.add('show')})});
+      setTimeout(function(){old.forEach(function(o){o.remove()})},600);
+    };
+    (im.decode?im.decode():Promise.resolve()).then(show,function(){ if(my!==token)return; im.remove(); old.forEach(function(o){o.remove()}); ph.textContent=d.name; ph.style.display='flex'; });
+    // texto: sai rápido e entra suave
+    body.classList.add('out');
+    setTimeout(function(){ if(my!==token)return;
+      title.textContent=d.name; text.textContent=d.text;
+      link.href=d.url; link.textContent=host(d.url)+' ↗';
+      detail.scrollTop=0; syncThumb(); body.classList.remove('out');
+    },180);
+  }
+  units.forEach(function(u,i){u.onclick=function(){select(i)}});
+  function syncThumb(){
+    var max=detail.scrollHeight-detail.clientHeight, track=1257.5, th=Math.max(120,track*detail.clientHeight/Math.max(detail.scrollHeight,1));
+    thumb.style.height=th+'px'; thumb.style.top=(max>0?(track-th)*detail.scrollTop/max:0)+'px';
+  }
+  detail.addEventListener('scroll',syncThumb);
+  select(0);
+})();
+</script>
+</body>
+</html>
